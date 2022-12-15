@@ -16,11 +16,19 @@ This repository contains the code to run the site on which takes place the exper
 ## Launch the site
 ### Clone the repo
 To start the webapp, clone the repo with
-```git clone https://github.com/karma-riuk/camel-kebab.git```
+```
+git clone https://github.com/karma-riuk/camel-kebab.git
+```
 or 
-```git clone git@github.com:karma-riuk/camel-kebab.git```
+```
+git clone git@github.com:karma-riuk/camel-kebab.git
+```
 ### Install the dependencies
-```yarn install```
+```
+yarn install
+```
 ### Start the webapp
-```yarn dev```
+```
+yarn dev
+```
 
