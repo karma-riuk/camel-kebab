@@ -1,0 +1,11 @@
+form.demographic {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+form.demographic .radiogroup{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}

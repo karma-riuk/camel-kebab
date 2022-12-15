@@ -1,0 +1,14 @@
+.phrase {
+    margin: 0;
+    margin-bottom: 1em;
+}
+
+.options {
+    display: flex;
+    justify-content: space-evenly;
+    min-width: 50vw;
+}
+
+.option {
+    transform: none;
+}
