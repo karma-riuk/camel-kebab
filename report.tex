@@ -5,6 +5,9 @@
 \usepackage[]{float} 
 \usepackage{hyperref} 
 \usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage{booktabs}
+\usepackage{subcaption}
+\usepackage{amsfonts}
 \title{The Bubble Algorithm Library}
 \author{Experiment 2, Experimentation \& Evaluation, 2022\\Arnaud Fauconnet,
 	Francesco Costa}
@@ -99,12 +102,12 @@ We run all tests on the same machine, the specs are as follows:
 	\begin{tabular}{ll}
 		\hline
 		\hline
-		\textbf{Computer Model} &  \\
+		\textbf{Computer Model} &  Lenovo Thinkpad X1 Carbon\\
 		\hline
-		\textbf{Processor}      &  \\
-		\textbf{Graphics Card}  &  \\
-		\textbf{Memory}         &  \\
-		\textbf{OS}             &  \\
+		\textbf{Processor}      &  i7 8550u (8 cores)\\
+		\textbf{Graphics Card}  &  UHD Graphics 620\\
+		\textbf{Memory}         &  16GB \\
+		\textbf{OS}             &  Arch Linux\\
 		\hline
 		\hline
 	\end{tabular}
@@ -121,10 +124,130 @@ Each experiment took around 2/3 minutes.
 \section{Results}
 
 \subsection{Visual Overview}
+By plotting the distribution of average times taken for camelCase and kebab-case we can get a first visual comparison of the two. 
+From the following graphs we can see that the distribution of times for kebab-case is heavily shifted towards the shorter time averages, while 
+for camelCase it is much more spread.
+
+\begin{figure}[h!]
+    \centering
+		\begin{subfigure}{0.49\textwidth}
+			\includegraphics[width=\textwidth]{images/avg_camel.png}
+			\caption{Distribution of average time for camelCase}
+		\end{subfigure}
+		\begin{subfigure}{0.49\textwidth}
+			\includegraphics[width=\textwidth]{images/avg_kebab.png}
+			\caption{Distribution of average time for kebab-case}
+		\end{subfigure}
+\end{figure}
+
+This makes us think that in general participants had a better performance using kebab-case and we can also see it when 
+looking at the average time taken depending on the length of the phrase. It is pretty clear that the curve that interpolates the points of the graphs 
+is significantly lower for kebab-case.
+
+\begin{figure}[h!]
+    \centering
+		\begin{subfigure}{0.49\textwidth}
+			\includegraphics[width=.8\textwidth]{images/time_length_camel.png}
+			\caption{Average time depending on length of phrase for camelCase}
+		\end{subfigure}
+		\begin{subfigure}{0.49\textwidth}
+			\includegraphics[width=.8\textwidth]{images/time_length_kebab.png}
+			\caption{Average time depending on length of phrase for kebab-case}
+		\end{subfigure}
+\end{figure}
+
+Looking at the relation between average time and proficiency in programming we can clearly see from the following graph that participants with 
+prior programming knowledge managed to complete the tasks with a lower distribution of average times compared to those without coding experience.
+
+\begin{figure}[h!]
+    \centering
+		\begin{subfigure}{0.49\textwidth}
+			\includegraphics[width=\textwidth]{images/prog_false.png}
+			\caption{Distribution of average time for participants without programming knowledge}
+		\end{subfigure}
+		\begin{subfigure}{0.49\textwidth}
+			\includegraphics[width=\textwidth]{images/prog_true.png}
+			\caption{Distribution of average time for participants with programming knowledge}
+		\end{subfigure}
+\end{figure}
+
+Given our small population of participants it wasn't possible to draw any meaningful conclusion while looking at the age compared to average
+completion time. This is also probably because as said most of the participants had programming knowledge giving less weight to the difference in age.
 
 \subsection{Descriptive Statistics}
+We can now look in detail at the specific statistics that we could draw from the experiment. By looking at the table \ref{tab:descriptiveStatistics} we can now 
+quantify the difference in performance when using camelCase or kebab-case.
+
+\begin{table}[h]
+    \centering
+    \caption{Descriptive Statistics}
+    \label{tab:descriptiveStatistics}
+    {
+        \begin{tabular}{lrr}
+            \toprule
+            \multicolumn{1}{c}{} & \multicolumn{2}{c}{avg. time} \\
+            \cline{2-3}
+             & camel & kebab  \\
+            \cmidrule[0.4pt]{1-3}
+            Median & $3805.524$ & $3045.476$  \\
+            Mean & $3984.809$ & $3445.125$  \\
+            Std. Deviation & $854.439$ & $876.329$  \\
+            Minimum & $2688.190$ & $2607.667$  \\
+            Maximum & $5349.762$ & $5270.952$  \\
+            \bottomrule
+        \end{tabular}
+    }
+\end{table}
+
+While the range of average times registered is pretty much the same, we see some important differences when looking at the mean and especially the median.
+We can in fact observe, looking at the median, a $25\%$ improvement in average time in favour of kebab-case as opposed to camelCase. While less prominent there is 
+also a $16\%$ increase in perfomance for the mean average time.
 
 \subsection{Inferential Statistics}
+To validate our findings we finally make use of inferential statistics, specifically by applying the Students's T-test on the data and then 
+calculating the Cohen's d. 
+
+\begin{table}[h]
+    \centering
+    \caption{Independent Samples T-Test for time depending on separator}
+    \label{tab:independentSamplesT-TestSeparator}
+    {
+        \begin{tabular}{lrrrrr}
+            \toprule
+            $ $ & t & df & p & Cohen's d & SE Cohen's d  \\
+            \cmidrule[0.4pt]{1-6}
+            avg. time & $1.462$ & $20$ & $0.080$ & $0.624$ & $0.447$  \\
+            \bottomrule
+            % \addlinespace[1ex]
+            % \multicolumn{6}{p{0.5\linewidth}}{\textit{Note.} For all tests, the alternative hypothesis specifies that group \textit{ camel $<$/em> is greater than group <em> kebab }.} \\
+            % \multicolumn{6}{p{0.5\linewidth}}{\textit{Note.} Student's t-test.} \\
+        \end{tabular}
+    }
+\end{table}
+
+\begin{table}[h]
+    \centering
+    \caption{Independent Samples T-Test for time depending on programming background}
+    \label{tab:independentSamplesT-TestProg}
+    {
+        \begin{tabular}{lrrrrr}
+            \toprule
+            $ $ & t & df & p & Cohen's d & SE Cohen's d  \\
+            \cmidrule[0.4pt]{1-6}
+            time & $3.895$ & $229$ & $<$ .001 & $0.653$ & $0.181$  \\
+            \bottomrule
+            % \addlinespace[1ex]
+            % \multicolumn{6}{p{0.5\linewidth}}{\textit{Note.} For all tests, the alternative hypothesis specifies that group \textit{ false $<$/em> is greater than group <em> true }.} \\
+            % \multicolumn{6}{p{0.5\linewidth}}{\textit{Note.} Student's t-test.} \\
+            % \multicolumn{6}{p{0.5\linewidth}}{$^{0}$ Brown-Forsythe test is significant (p $<$ .05), suggesting a violation of the equal variance assumption} \\
+        \end{tabular}
+    }
+\end{table}
+
+We know that for a result to be accepted the $p$ value should be less than $0.05$ and from table \ref{tab:independentSamplesT-TestSeparator} we can see that while not exactly over the boundary 
+we are very close to a significant $p$ value, nonetheless the Cohen's d shows a more than medium effect. From table \ref{tab:independentSamplesT-TestProg} we can instead see a $p$ value significantly 
+below the threshold, meaning not only a medium effect but also a valid conclusion that programming experience influences the reading ability of users.
+
 
 \section{Discussion}
 
@@ -132,7 +255,7 @@ Each experiment took around 2/3 minutes.
 We deliberately chose to formulate the null hypotheses at the start since we see the choice of the separator mainly as a personal preference. For the same reason 
 we wanted to avoid the risk of introducing bias given our subjective experiences.
 
-Contrary from our hypothesis we can actually see some objective differences in reading speed when using camelCase or kebab-case.
+Contrary to our hypothesis we can actually see some objective differences in reading speed when using camelCase or kebab-case.
 
 \subsection{Limitations and Threats to Validity}
 A clear limitation that could (and possibly did) lead to reliable results is the choice of our participant pool. Given the fact that our testing application 
@@ -141,5 +264,7 @@ mostly informatics students. Ideally the number of participants should also be i
 proficiency in coding.
 
 \subsection{Conclusions}
+While our research and analysis may not give an advantage backed by statistics to one of the two separators, and we believe that it will remain a choice based on mainly 
+preference, we can see significance in doing further research into this topic.
 
 \end{document}
