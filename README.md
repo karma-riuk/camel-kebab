@@ -31,4 +31,7 @@ yarn install
 ```
 yarn dev
 ```
+Now open your browser and go to [http://localhost:5173](http://localhost:5173)
+(or whatever port indicated by `vite` after running `yarn dev` in a terminal)
+and make the user follow the instructions.
 
