@@ -8,12 +8,17 @@
 \usepackage{booktabs}
 \usepackage{subcaption}
 \usepackage{amsfonts}
-\title{The Bubble Algorithm Library}
+\title{camelCase vs Kebab-case}
 \author{Experiment 2, Experimentation \& Evaluation, 2022\\Arnaud Fauconnet,
 	Francesco Costa}
 \date{}
 
 \usepackage[most]{tcolorbox}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    urlcolor=cyan,
+    }
 
 
 \newtcbtheorem{Hypotheses}{\bfseries Hypotheses}{enhanced,drop shadow={black!50!white},
@@ -36,7 +41,7 @@ can, just as for natural language, lead to substantial reading speedups. The cho
 kebab-case. In general the choice of a particular writing practice comes down to personal preference, but we now want to study these two 
 specific options to see if we can objectively deem one better than the other. The experiment is run by asking users to select a short phrase (two or three words) 
 created using one the two separation methods among four possible options, with the objective of finding the one corresponding to an example phrase 
-separated by spaces.
+separated by spaces. As opposed to our initial hypothesis, we discovered that there is a difference in performance between the two cases.
 
 \newpage 
 \section{Introduction}
@@ -266,5 +271,16 @@ proficiency in coding.
 \subsection{Conclusions}
 While our research and analysis may not give an advantage backed by statistics to one of the two separators, and we believe that it will remain a choice based on mainly 
 preference, we can see significance in doing further research into this topic.
+
+
+\newpage
+
+\appendix
+\section{Reproduction package}
+To run the experiment with other test subjects and have the same scale of raw
+data we gathered, you can simply go the
+\href{https://github.com/karma-riuk/camel-kebab}{official repo} of this
+experiment and follow the steps to install the webapp locally.
+
 
 \end{document}
